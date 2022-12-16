@@ -1,0 +1,32 @@
+<div class="row">
+  <form [formGroup]="pageOneForm">
+    <fieldset>
+      <!-- Title -->
+      <div class="col-12 mb-3">
+        <label for="titleField"> *Title </label>
+        <input
+          formControlName="titleFormControl"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': showAsInvalid(titleFormControl) }"
+          name="inputTitle"
+          id="titleField"
+          autocomplete="off"
+        />
+        <span
+          id="titleFeedback"
+          class="invalid-feedback"
+          *ngIf="showAsInvalid(titleFormControl)"
+        >
+          Title is required.
+        </span>
+        <span
+          id="titleMaxLengthFeedback"
+          class="invalid-feedback"
+          *ngIf="titleFormControl.errors?.maxlength"
+        >
+          Title must not contain more than 255 characters.
+        </span>
+      </div>
+    </fieldset>
+  </form>
+</div>

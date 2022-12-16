@@ -1,0 +1,46 @@
+
+<div class="row">
+<form [formGroup]="pageTwoForm">
+<fieldset>
+<div class="col-xl-6 col-lg-8 col-md-12 mb-3">
+  <label for="ponsDate"> *Date range</label>
+  <app-datetime-range-picker id="phaseDate"
+    formControlName="dateRangeFormControl"
+    [isStartInvalid]="
+      ((dateRangeFormControl.touched || dateRangeFormControl.dirty) &&
+        (dateRangeFormControl.errors?.futureStartDate || dateRangeFormControl.errors?.startDateRequired))"
+    [isEndInvalid]="
+      (dateRangeFormControl.touched || dateRangeFormControl.dirty) &&
+      (dateRangeFormControl.errors?.endDateRequired || dateRangeFormControl.errors?.endBeforeStart)">
+  </app-datetime-range-picker>
+
+  <span *ngIf="
+      (dateRangeFormControl.touched || dateRangeFormControl.dirty) &&
+      dateRangeFormControl.errors?.startDateRequired
+      " class="invalid-feedback d-block">
+    Start date is required.
+  </span>
+  <span *ngIf="
+      (dateRangeFormControl.touched || dateRangeFormControl.dirty) &&
+      dateRangeFormControl.errors?.endDateRequired
+      " class="invalid-feedback d-block">
+    End date is required.
+  </span>
+  <span *ngIf="
+      (dateRangeFormControl.touched || dateRangeFormControl.dirty) &&
+      dateRangeFormControl.errors?.endBeforeStart
+      " class="invalid-feedback d-block">
+    Start date must come before end date.
+  </span>
+
+  <span *ngIf="
+      (dateRangeFormControl.touched || dateRangeFormControl.dirty) &&
+      dateRangeFormControl.errors?.futureStartDate
+      " class="invalid-feedback d-block">
+    Start date must be in the future.
+  </span>
+</div>
+</div>  
+</fieldset>
+</form>
+</div>
